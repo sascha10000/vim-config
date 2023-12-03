@@ -19,8 +19,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
 -- Treesitter folding 
---vim.wo.foldmethod = 'expr'
---vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldlevel = 99
 
 -- Vimspector options
 vim.cmd([[

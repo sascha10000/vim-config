@@ -1,3 +1,5 @@
+local vim = vim
+
 require("plugins")
 require("keys")
 require("opts")
@@ -15,11 +17,90 @@ require("mason").setup({
 
 require("mason-lspconfig").setup()
 
+-- LSP Setup
+local lspconfig = require('lspconfig')
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lspconfig.lua_ls.setup({
+  capabilities = lsp_capabilities,
+})
+
+local pyright_opts = {
+  single_file_support = true,
+  settings = {
+    pyright = {
+      disableLanguageServices = false,
+      disableOrganizeImports = false
+    },
+    python = {
+      analysis = {
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        diagnosticMode = "workspace", -- openFilesOnly, workspace
+        typeCheckingMode = "basic", -- off, basic, strict
+        useLibraryCodeForTypes = true
+      }
+    }
+  },
+}
+
+lspconfig.pyright.setup({
+  capabilities = lsp_capabilities, pyright_opts
+})
+lspconfig.tsserver.setup({
+  capabilities = lsp_capabilities
+})
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<space>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
+
+-- Linting Setup
+local lint = require("lint")
+lint.linters_by_ft = {
+    python = {"black"},
+    javascript = {"eslint"},
+    typescript = {"eslint"},
+    rust = {"cargo"},
+    toml = {"cargo"},
+}
+
 -- Theme
-
-
 vim.cmd('colorscheme rose-pine')
-
 
 -- LSP Diagnostics Options Setup 
 local sign = function(opts)
@@ -49,9 +130,10 @@ vim.diagnostic.config({
     },
 })
 
+
 -- Treesitter Plugin Setup 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "help", "javascript", "typescript", "rust", "toml" },
+  ensure_installed = { "python", "javascript", "typescript", "rust", "toml" },
   auto_install = true,
   highlight = {
     enable = true,
@@ -65,6 +147,7 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
+-- Rust Plugin Setup
 local rt = require("rust-tools")
 
 rt.setup({
@@ -91,8 +174,8 @@ cmp.setup({
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
+--    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+ --   ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
@@ -131,12 +214,28 @@ cmp.setup({
   },
 })
 
+
+-- Statusline Setup
+require('lualine').setup()
+
+vim.opt.nu = true
 vim.opt.relativenumber = true
+
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true 
+
+vim.opt.wrap = false
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 
 vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
-
+ vim.g.vimspector_enable_mappings = "HUMAN"
 

@@ -24,9 +24,9 @@ use 'mfussenegger/nvim-dap'
 
 
 use 'nvim-treesitter/nvim-treesitter'
-
 use 'puremourning/vimspector'
 
+-- Really needed?
 use 'voldikss/vim-floaterm'
 
 -- Completion framework:
@@ -43,19 +43,30 @@ use 'hrsh7th/cmp-path'
 use 'hrsh7th/cmp-buffer'                            
 use 'hrsh7th/vim-vsnip'
 
+-- Fuzzy Search
 use {
-'nvim-telescope/telescope.nvim', tag = '0.1.1',
+'nvim-telescope/telescope.nvim', tag = '0.1.5',
 -- or                            , branch = '0.1.x',
 requires = { {'nvim-lua/plenary.nvim'} }
 }
 
+
+-- Theme
 use({ 'rose-pine/neovim', as = 'rose-pine' })
 
+-- GitHub Copilot
+use 'github/copilot.vim'
+
+-- undotree
+use 'mbbill/undotree'
+
+-- Linting
+use 'mfussenegger/nvim-lint'
+
+-- Statusline
 use {
-'nvim-tree/nvim-tree.lua',
-requires = {
-'nvim-tree/nvim-web-devicons', -- optional
-},
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
 
 end)
