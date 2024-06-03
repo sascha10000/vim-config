@@ -69,4 +69,13 @@ use {
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
 
+-- Gitsigns
+use {
+  'lewis6991/gitsigns.nvim',
+  requires = { 'nvim-lua/plenary.nvim' }
+}
+
+-- Conform
+use "stevearc/conform.nvim"
+
 end)
