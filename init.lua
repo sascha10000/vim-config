@@ -553,6 +553,19 @@ cmp.setup({
 -- Statusline Setup
 require("lualine").setup()
 
+-- Fugitive shortcuts
+vim.api.nvim_set_keymap("n", "<space>gs", ":G<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>gw", ":Gwrite<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>gc", ":Git commit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>gp", ":Git push<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>gl", ":Git pull<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>gb", ":Git blame<CR>", { noremap = true, silent = true })
+
+-- Diffview shortcuts
+vim.api.nvim_set_keymap("n", "<space>do", ":DiffviewOpen<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>dc", ":DiffviewClose<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<space>dh", ":DiffviewFileHistory<CR>", { noremap = true, silent = true })
+
 -- Gitsigns Setup
 require("gitsigns").setup({
 	on_attach = function(bufnr)
