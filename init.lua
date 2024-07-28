@@ -554,17 +554,17 @@ cmp.setup({
 require("lualine").setup()
 
 -- Fugitive shortcuts
-vim.api.nvim_set_keymap("n", "<space>gs", ":G<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gw", ":Gwrite<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gc", ":Git commit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gp", ":Git push<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gl", ":Git pull<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>gb", ":Git blame<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gs", ":G<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gw", ":Gwrite<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gl", ":Git pull<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gb", ":Git blame<CR>", { noremap = true, silent = true })
 
 -- Diffview shortcuts
-vim.api.nvim_set_keymap("n", "<space>do", ":DiffviewOpen<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>dc", ":DiffviewClose<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<space>dh", ":DiffviewFileHistory<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>do", ":DiffviewOpen<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>dc", ":DiffviewClose<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>dh", ":DiffviewFileHistory<CR>", { noremap = true, silent = true })
 
 -- Gitsigns Setup
 require("gitsigns").setup({
@@ -610,6 +610,33 @@ require("gitsigns").setup({
 		end)
 		map("n", "<leader>tb", gs.toggle_current_line_blame)
 		map("n", "<leader>hd", gs.diffthis)
+		-- LSP Diagnostics Options Setup
+		local sign = function(opts)
+			vim.fn.sign_define(opts.name, {
+				texthl = opts.name,
+				text = opts.text,
+				numhl = "",
+			})
+		end
+
+		sign({ name = "DiagnosticSignError", text = "" })
+		sign({ name = "DiagnosticSignWarn", text = "" })
+		sign({ name = "DiagnosticSignHint", text = "" })
+		sign({ name = "DiagnosticSignInfo", text = "" })
+
+		vim.diagnostic.config({
+			virtual_text = false,
+			signs = true,
+			update_in_insert = true,
+			underline = true,
+			severity_sort = false,
+			float = {
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
+		})
 		map("n", "<leader>hD", function()
 			gs.diffthis("~")
 		end)
