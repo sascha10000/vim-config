@@ -224,7 +224,16 @@ cmp.setup({
 })
 
 -- Statusline Setup
-require("lualine").setup()
+require("lualine").setup({
+	sections = {
+		lualine_c = {
+			{
+				"filename",
+				path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+			},
+		},
+	},
+})
 
 -- Fugitive shortcuts
 vim.api.nvim_set_keymap("n", "<leader>gs", ":G<CR>", { noremap = true, silent = true })
