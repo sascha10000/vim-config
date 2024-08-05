@@ -37,6 +37,14 @@ lspconfig.lua_ls.setup({
     capabilities = lsp_capabilities,
 })
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require 'lspconfig'.jsonls.setup {
+    capabilities = capabilities,
+}
+
 local pyright_opts = {
     single_file_support = true,
     settings = {
@@ -61,8 +69,30 @@ lspconfig.pyright.setup({
     pyright_opts,
 })
 
+
+
+local function organize_imports()
+    local params = {
+        command = "_typescript.organizeImports",
+        arguments = { vim.api.nvim_buf_get_name(0) },
+        title = ""
+    }
+    vim.lsp.buf.execute_command(params)
+end
+
 lspconfig.tsserver.setup({
     capabilities = lsp_capabilities,
+    init_options = {
+        preferences = {
+            importModuleSpecifierPreference = "relative",
+        },
+    },
+    commands = {
+        OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports"
+        }
+    }
 })
 
 lspconfig.astro.setup({
@@ -238,14 +268,14 @@ cmp.setup({
 
 -- Statusline Setup
 require("lualine").setup({
-	sections = {
-		lualine_c = {
-			{
-				"filename",
-				path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
-			},
-		},
-	},
+    sections = {
+        lualine_c = {
+            {
+                "filename",
+                path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+            },
+        },
+    },
 })
 
 -- Fugitive shortcuts
@@ -356,3 +386,10 @@ vim.g.vimspector_enable_mappings = "HUMAN"
 
 vim.opt.termguicolors = true
 require("bufferline").setup {}
+
+-- Autoread when files change externally
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = { "*" },
+})
