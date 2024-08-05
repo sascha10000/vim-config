@@ -14,7 +14,20 @@ require("mason").setup({
     },
 })
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = {
+        "angularls",
+        "astro",
+        "cssls",
+        "html",
+        "jsonls",
+        "pyright",
+        "tsserver",
+        "vimls",
+        "lua_ls",
+        "rust_analyzer",
+    },
+}
 
 -- LSP Setup
 local lspconfig = require("lspconfig")
@@ -331,3 +344,6 @@ vim.cmd([[
 ]])
 
 vim.g.vimspector_enable_mappings = "HUMAN"
+
+vim.opt.termguicolors = true
+require("bufferline").setup {}

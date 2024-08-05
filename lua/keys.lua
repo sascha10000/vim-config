@@ -6,10 +6,10 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<C-ff>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fs', function()
-                builtin.grep_string({search = vim.fn.input("Grep > ")});
-        end)
+    builtin.grep_string({ search = vim.fn.input("Grep > ") });
+end)
 
--- Space PV back 
+-- Space PV back
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 
@@ -24,3 +24,10 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 --]])
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+
+-- Angular shortcuts
+local opts = { noremap = true, silent = true }
+local ng = require("ng")
+vim.keymap.set("n", "<leader>at", ng.goto_template_for_component, opts)
+vim.keymap.set("n", "<leader>ac", ng.goto_component_with_template_file, opts)
+vim.keymap.set("n", "<leader>aT", ng.get_template_tcb, opts)

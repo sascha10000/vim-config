@@ -84,4 +84,10 @@ return require("packer").startup(function(use)
 
     -- Git Diffview
     use("sindrets/diffview.nvim")
+
+    -- angular templates
+    use { 'joeveiga/ng.nvim' }
+
+    -- Buffer as tabs
+    use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 end)
