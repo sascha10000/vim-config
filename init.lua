@@ -2,6 +2,8 @@
 require("plugins")
 require("keys")
 require("opts")
+require('dap-config')
+
 
 -- Mason Setup
 require("mason").setup({
@@ -26,6 +28,7 @@ require("mason-lspconfig").setup {
         "vimls",
         "lua_ls",
         "rust_analyzer",
+        "gopls",
     },
 }
 
@@ -34,6 +37,10 @@ local lspconfig = require("lspconfig")
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lspconfig.lua_ls.setup({
+    capabilities = lsp_capabilities,
+})
+
+lspconfig.gopls.setup({
     capabilities = lsp_capabilities,
 })
 
@@ -94,6 +101,10 @@ lspconfig.tsserver.setup({
         }
     }
 })
+
+require 'lspconfig'.html.setup {
+    capabilities = capabilities,
+}
 
 lspconfig.astro.setup({
     capabilities = lsp_capabilities,
@@ -280,10 +291,10 @@ require("lualine").setup({
 
 -- Fugitive shortcuts
 vim.api.nvim_set_keymap("n", "<leader>gs", ":G<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gw", ":Gwrite<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>gl", ":Git pull<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>gw", ":Gwrite<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>gl", ":Git pull<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gb", ":Git blame<CR>", { noremap = true, silent = true })
 
 -- Diffview shortcuts
@@ -384,12 +395,12 @@ vim.cmd([[
 
 vim.g.vimspector_enable_mappings = "HUMAN"
 
-vim.opt.termguicolors = true
-require("bufferline").setup {}
-
 -- Autoread when files change externally
 vim.o.autoread = true
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
     command = "if mode() != 'c' | checktime | endif",
     pattern = { "*" },
 })
+
+vim.opt.termguicolors = true
+require("bufferline").setup {}

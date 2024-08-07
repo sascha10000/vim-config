@@ -3,11 +3,18 @@ vim = vim
 vim.g.mapleader = " "
 -- telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', function()
+    builtin.find_files { path_display = { "truncate" } }
+end)
 vim.keymap.set('n', '<C-ff>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fs', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
+vim.keymap.set('n', '<leader>fd', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', function()
+    builtin.buffers { path_display = { "truncate" } }
+end)
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- Space PV back
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -31,3 +38,18 @@ local ng = require("ng")
 vim.keymap.set("n", "<leader>at", ng.goto_template_for_component, opts)
 vim.keymap.set("n", "<leader>ac", ng.goto_component_with_template_file, opts)
 vim.keymap.set("n", "<leader>aT", ng.get_template_tcb, opts)
+
+-- Trouble
+vim.keymap.set("n", "<leader>xx", require("trouble").toggle, opts)
+
+local open_with_trouble = require("trouble.sources.telescope").open
+local telescope = require("telescope")
+
+telescope.setup({
+    defaults = {
+        mappings = {
+            i = { ["<c-t>"] = open_with_trouble },
+            n = { ["<c-t>"] = open_with_trouble },
+        },
+    },
+})
