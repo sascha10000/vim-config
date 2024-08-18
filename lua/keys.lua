@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>ff', function()
 end)
 vim.keymap.set('n', '<C-ff>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fs', function()
-    builtin.grep_string({ search = vim.fn.input("Grep > ") });
+    builtin.grep_string({ search = vim.fn.input("Grep > "), path_display = { "truncate" } });
 end)
 vim.keymap.set('n', '<leader>fd', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', function()
@@ -40,16 +40,5 @@ vim.keymap.set("n", "<leader>ac", ng.goto_component_with_template_file, opts)
 vim.keymap.set("n", "<leader>aT", ng.get_template_tcb, opts)
 
 -- Trouble
-vim.keymap.set("n", "<leader>xx", require("trouble").toggle, opts)
-
-local open_with_trouble = require("trouble.sources.telescope").open
-local telescope = require("telescope")
-
-telescope.setup({
-    defaults = {
-        mappings = {
-            i = { ["<c-t>"] = open_with_trouble },
-            n = { ["<c-t>"] = open_with_trouble },
-        },
-    },
-})
+vim.keymap.set("n", "<leader>xx", ":Trouble diagnostics toggle<cr>", opts)
+vim.keymap.set("n", "<leader>xt", ":Telescope diagnostics<cr>", opts)
