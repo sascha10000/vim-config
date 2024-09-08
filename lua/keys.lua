@@ -1,6 +1,10 @@
 vim = vim
 
 vim.g.mapleader = " "
+
+-- custom
+vim.keymap.set('v', '<leader>y', ':y*<CR>')
+
 -- telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', function()
@@ -15,6 +19,7 @@ vim.keymap.set('n', '<leader>fb', function()
     builtin.buffers { path_display = { "truncate" } }
 end)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
 
 -- Space PV back
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -42,3 +47,6 @@ vim.keymap.set("n", "<leader>aT", ng.get_template_tcb, opts)
 -- Trouble
 vim.keymap.set("n", "<leader>xx", ":Trouble diagnostics toggle<cr>", opts)
 vim.keymap.set("n", "<leader>xt", ":Telescope diagnostics<cr>", opts)
+
+-- ZenMode
+vim.keymap.set("n", "<leader>zm", ":ZenMode<cr>", opts)

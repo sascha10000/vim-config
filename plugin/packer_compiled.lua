@@ -248,6 +248,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/vimspector",
     url = "https://github.com/puremourning/vimspector"
+  },
+  ["zen-mode.nvim"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
+    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 

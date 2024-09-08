@@ -93,4 +93,6 @@ return require("packer").startup(function(use)
     use { 'folke/trouble.nvim' }
 
     use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
+
+    use "folke/zen-mode.nvim"
 end)

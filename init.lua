@@ -168,6 +168,7 @@ require("conform").setup({
         python = { "isort", "black" },
         javascript = { "prettierd", "prettier" },
         typescript = { "prettierd", "prettier" },
+        rust = { "rustfmt" },
     },
 })
 
@@ -407,4 +408,11 @@ vim.opt.termguicolors = true
 require("bufferline").setup {}
 
 require('trouble').setup {
+}
+
+require('zen-mode').setup {
+    window = {
+        width = 0.8,
+        height = 0.8,
+    },
 }
