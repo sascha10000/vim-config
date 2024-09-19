@@ -2,6 +2,12 @@ vim = vim
 
 vim.g.mapleader = " "
 
+-- deactivate arrow keys
+vim.keymap.set('n', '<Up>', '<Nop>')
+vim.keymap.set('n', '<Down>', '<Nop>')
+vim.keymap.set('n', '<Left>', '<Nop>')
+vim.keymap.set('n', '<Right>', '<Nop>')
+
 -- custom
 vim.keymap.set('v', '<leader>y', ':y*<CR>')
 
