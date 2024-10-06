@@ -56,6 +56,19 @@ dap.adapters.go = {
     command = 'node',
     args = { os.getenv('HOME') .. '/dev/vscode-go/extension/dist/debugAdapter.js' },
 }
+
+dap.adapters.firefox = {
+    type = 'executable',
+    command = 'node',
+    args = { os.getenv('HOME') .. '/dev/vscode-firefox-debug/dist/adapter.bundle.js' },
+}
+
+dap.adapters['node-js'] = {
+    type = 'executable',
+    command = 'node',
+    args = { os.getenv('HOME') .. '/dev/js-debug/src/dapDebugServer.js' },
+}
+
 dap.configurations.go = {
     {
         type = 'go',
@@ -79,12 +92,6 @@ dap.configurations.python = {
     },
 }
 
-dap.adapters.firefox = {
-    type = 'executable',
-    command = 'node',
-    args = { os.getenv('HOME') .. '/dev/vscode-firefox-debug/dist/adapter.bundle.js' },
-}
-
 dap.configurations.typescript = {
     {
         name = 'Debug with Firefox',
@@ -93,8 +100,26 @@ dap.configurations.typescript = {
         reAttach = true,
         url = 'http://localhost:3000',
         webRoot = '${workspaceFolder}',
-        firefoxExecutable = '/usr/bin/firefox'
-    }
+        firefoxExecutable = '/Applications/Firefox.app/Contents/MacOS/firefox'
+    },
+    {
+        name = 'npm run dap:debug (add dap:debug script to package.json)',
+        type = 'node-js',
+        request = 'launch',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+        runtimeExecutable = 'npm',
+        runtimeArgs = { 'run', 'dap:debug', '--', '--insepect-brk=9229' },
+        port = 9229,
+    },
+    {
+        name = 'Attach npm run dap:debug',
+        type = 'node-js',
+        request = 'attach',
+        port = 9229,
+        address = 'localhost',
+        restart = true,
+    },
 }
 
 dap.defaults.fallback.external_terminal = {
