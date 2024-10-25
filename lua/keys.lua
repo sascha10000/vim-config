@@ -56,3 +56,17 @@ vim.keymap.set("n", "<leader>xt", ":Telescope diagnostics<cr>", opts)
 
 -- ZenMode
 vim.keymap.set("n", "<leader>zm", ":ZenMode<cr>", opts)
+
+-- YANK LSP Diagnostic error
+-- vim.api.nvim_set_keymap('n', '<leader>e', [[:lua YankDiagnosticError()<CR>]],
+--     { noremap = true, silent = true, desc = "Copy error" })
+--
+-- function YankDiagnosticError()
+--     vim.diagnostic.open_float()
+--     vim.diagnostic.open_float()
+--     local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
+--     vim.cmd("normal! j")                 -- move down one row
+--     vim.cmd("normal! VG")                -- select everything from that row down
+--     vim.cmd("normal! <leader>y")         -- yank selected text
+--     vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
+-- end
