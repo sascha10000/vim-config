@@ -169,6 +169,7 @@ require("conform").setup({
         javascript = { "prettierd", "prettier" },
         typescript = { "prettierd", "prettier" },
         rust = { "rustfmt" },
+        xml = { "xmllint", "prettierd", "prettier" }
     },
 })
 
