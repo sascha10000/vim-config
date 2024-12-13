@@ -95,4 +95,6 @@ return require("packer").startup(function(use)
     use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
 
     use "folke/zen-mode.nvim"
+    -- Extension for search (highlights all matches)
+    use { 'kevinhwang91/nvim-hlslens' }
 end)
