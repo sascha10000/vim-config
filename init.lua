@@ -24,7 +24,7 @@ require("mason-lspconfig").setup {
         "html",
         "jsonls",
         "pyright",
-        "tsserver",
+        "ts_ls",
         "vimls",
         "lua_ls",
         "rust_analyzer",
@@ -88,7 +88,7 @@ local function organize_imports()
     vim.lsp.buf.execute_command(params)
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
     capabilities = lsp_capabilities,
     init_options = {
         preferences = {
