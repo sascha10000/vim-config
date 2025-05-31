@@ -22,3 +22,11 @@ Integration with popular build tools and package managers for streamlined develo
 And if your programming language of choice isn't Rust or TypeScript, don't worry - our setup is highly customizable and can be adapted to suit a wide range of programming languages and workflows.
 
 So if you're ready to commit to a tool that will work for your entire lifetime, join us at "Vim to the Grave" and take your productivity to the next level. With our Lua configuration and optimized plugins for Rust and TypeScript, you can be confident that you're investing in a tool that will help you write better code, faster.
+
+SETUP *Mac):
+1. create or go into /Users/<username>/.config
+2. clone this repository
+3. install packer: git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+                   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+4. Open nvim enter :PackerSync
+5. Restart nvim
