@@ -9,92 +9,91 @@ augroup end
 ]])
 
 return require("packer").startup(function(use)
-    -- Packer can manage itself
-    use("wbthomason/packer.nvim")
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-    use("williamboman/mason.nvim")
-    use("williamboman/mason-lspconfig.nvim")
-    use("neovim/nvim-lspconfig")
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("neovim/nvim-lspconfig")
 
-    use("simrat39/rust-tools.nvim")
+	use("simrat39/rust-tools.nvim")
 
-    -- Debugging
-    use("nvim-lua/plenary.nvim")
-    use("mfussenegger/nvim-dap")
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
-    use 'leoluz/nvim-dap-go'
+	-- Debugging
+	use("nvim-lua/plenary.nvim")
+	use("mfussenegger/nvim-dap")
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } })
+	use("leoluz/nvim-dap-go")
 
-    use("nvim-treesitter/nvim-treesitter")
-    use("puremourning/vimspector")
+	use("nvim-treesitter/nvim-treesitter")
+	-- use("puremourning/vimspector")
 
-    -- Really needed?
-    use("voldikss/vim-floaterm")
+	-- Really needed?
+	use("voldikss/vim-floaterm")
 
-    -- Completion framework:
-    use("hrsh7th/nvim-cmp")
+	-- Completion framework:
+	use("hrsh7th/nvim-cmp")
 
-    -- LSP completion source:
-    use("hrsh7th/cmp-nvim-lsp")
+	-- LSP completion source:
+	use("hrsh7th/cmp-nvim-lsp")
 
-    -- Useful completion sources:
-    use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-nvim-lsp-signature-help")
-    use("hrsh7th/cmp-vsnip")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/vim-vsnip")
+	-- Useful completion sources:
+	use("hrsh7th/cmp-nvim-lua")
+	use("hrsh7th/cmp-nvim-lsp-signature-help")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/vim-vsnip")
 
-    -- Fuzzy Search
-    use({
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.5",
-        -- or                            , branch = '0.1.x',
-        requires = { { "nvim-lua/plenary.nvim" } },
-    })
+	-- Fuzzy Search
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		-- or                            , branch = '0.1.x',
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 
-    -- Theme
-    use({ "rose-pine/neovim", as = "rose-pine" })
+	-- Theme
+	use({ "rose-pine/neovim", as = "rose-pine" })
 
-    -- GitHub Copilot
-    use("github/copilot.vim")
+	-- GitHub Copilot
+	use("github/copilot.vim")
 
-    -- undotree
-    use("mbbill/undotree")
+	-- undotree
+	use("mbbill/undotree")
 
-    -- Linting
-    use("mfussenegger/nvim-lint")
+	-- Linting
+	use("mfussenegger/nvim-lint")
 
-    -- Statusline
-    use({
-        "nvim-lualine/lualine.nvim"
-    })
+	-- Statusline
+	use({
+		"nvim-lualine/lualine.nvim",
+	})
 
-    use "nvim-tree/nvim-web-devicons"
+	use("nvim-tree/nvim-web-devicons")
 
+	-- Gitsigns
+	use({
+		"lewis6991/gitsigns.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
-    -- Gitsigns
-    use({
-        "lewis6991/gitsigns.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
-    })
+	-- Conform
+	use("stevearc/conform.nvim")
 
-    -- Conform
-    use("stevearc/conform.nvim")
+	-- Fugitive
+	use("tpope/vim-fugitive")
 
-    -- Fugitive
-    use("tpope/vim-fugitive")
+	-- Git Diffview
+	use("sindrets/diffview.nvim")
 
-    -- Git Diffview
-    use("sindrets/diffview.nvim")
+	-- angular templates
+	use({ "joeveiga/ng.nvim" })
 
-    -- angular templates
-    use { 'joeveiga/ng.nvim' }
+	use({ "folke/trouble.nvim" })
 
-    use { 'folke/trouble.nvim' }
+	use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
 
-    use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
-
-    use "folke/zen-mode.nvim"
-    -- Extension for search (highlights all matches)
-    use { 'kevinhwang91/nvim-hlslens' }
+	use("folke/zen-mode.nvim")
+	-- Extension for search (highlights all matches)
+	use({ "kevinhwang91/nvim-hlslens" })
 end)
