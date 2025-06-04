@@ -55,9 +55,6 @@ return require("packer").startup(function(use)
 	-- Theme
 	use({ "rose-pine/neovim", as = "rose-pine" })
 
-	-- GitHub Copilot
-	use("github/copilot.vim")
-
 	-- undotree
 	use("mbbill/undotree")
 

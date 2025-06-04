@@ -3,6 +3,7 @@ require("plugins")
 require("keys")
 require("opts")
 require("dap-config")
+require("avante")
 
 -- Mason Setup
 require("mason").setup({
