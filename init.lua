@@ -3,7 +3,7 @@ require("plugins")
 require("keys")
 require("opts")
 require("dap-config")
-require("claude-code")
+require("claude-code-config")
 -- require("avante-config")
 
 -- Mason Setup
