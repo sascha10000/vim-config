@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
+  ["claudecode.nvim"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/claudecode.nvim",
+    url = "https://github.com/coder/claudecode.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -213,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
+  },
+  ["snacks.nvim"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/snacks.nvim",
+    url = "https://github.com/folke/snacks.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

@@ -10,11 +10,6 @@ use("HakonHarnes/img-clip.nvim")
 use("zbirenbaum/copilot.lua")
 
 -- Avante.nvim with build process
-use({
-	"yetone/avante.nvim",
-	branch = "main",
-	run = "make",
-	config = function()
-		require("avante").setup()
-	end,
-})
+use("yetone/avante.nvim")
+
+require("avante").setup({})
