@@ -93,4 +93,6 @@ return require("packer").startup(function(use)
 	use("folke/zen-mode.nvim")
 	-- Extension for search (highlights all matches)
 	use({ "kevinhwang91/nvim-hlslens" })
+
+	use("github/copilot.vim")
 end)
