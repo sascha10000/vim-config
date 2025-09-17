@@ -94,5 +94,7 @@ return require("packer").startup(function(use)
 	-- Extension for search (highlights all matches)
 	use({ "kevinhwang91/nvim-hlslens" })
 
-	use("github/copilot.vim")
+	use({ "Glench/Vim-Jinja2-Syntax" })
+
+	--use("github/copilot.vim")
 end)

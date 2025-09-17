@@ -74,15 +74,15 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Vim-Jinja2-Syntax"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/Vim-Jinja2-Syntax",
+    url = "https://github.com/Glench/Vim-Jinja2-Syntax"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
-  },
-  ["claudecode.nvim"] = {
-    loaded = true,
-    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/claudecode.nvim",
-    url = "https://github.com/coder/claudecode.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -118,11 +118,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
-  },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
   },
   ["diffview.nvim"] = {
     loaded = true,
@@ -223,11 +218,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
-  },
-  ["snacks.nvim"] = {
-    loaded = true,
-    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/snacks.nvim",
-    url = "https://github.com/folke/snacks.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
