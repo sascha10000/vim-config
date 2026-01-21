@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/conform.nvim",
     url = "https://github.com/stevearc/conform.nvim"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/diffview.nvim",
@@ -253,6 +258,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-tidal"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/vim-tidal",
+    url = "https://github.com/tidalcycles/vim-tidal"
   },
   ["vim-vsnip"] = {
     loaded = true,

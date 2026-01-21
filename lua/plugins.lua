@@ -96,5 +96,6 @@ return require("packer").startup(function(use)
 
 	use({ "Glench/Vim-Jinja2-Syntax" })
 
-	--use("github/copilot.vim")
+	use("github/copilot.vim")
+	use("tidalcycles/vim-tidal")
 end)
