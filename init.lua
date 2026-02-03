@@ -30,29 +30,11 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"rust_analyzer",
 		"gopls",
+		"dcm",
 	},
 })
 
 -- LSP Setup
-local lspconfig = require("lspconfig")
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-lspconfig.lua_ls.setup({
-	capabilities = lsp_capabilities,
-})
-
-lspconfig.gopls.setup({
-	capabilities = lsp_capabilities,
-})
-
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require("lspconfig").jsonls.setup({
-	capabilities = capabilities,
-})
-
 local pyright_opts = {
 	single_file_support = true,
 	settings = {
@@ -71,12 +53,6 @@ local pyright_opts = {
 		},
 	},
 }
-
-lspconfig.pyright.setup({
-	capabilities = lsp_capabilities,
-	pyright_opts,
-})
-
 local function organize_imports()
 	local params = {
 		command = "_typescript.organizeImports",
@@ -85,8 +61,40 @@ local function organize_imports()
 	}
 	vim.lsp.buf.execute_command(params)
 end
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.ts_ls.setup({
+vim.lsp.config("angularls", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("angularls")
+
+vim.lsp.config("astro", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("astro")
+
+vim.lsp.config("cssls", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("cssls")
+
+vim.lsp.config("html", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("html")
+
+vim.lsp.config("jsonls", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("jsonls")
+
+vim.lsp.config("pyright", {
+	capabilities = lsp_capabilities,
+	pyright_opts,
+})
+vim.lsp.enable("pyright")
+
+vim.lsp.config("ts_ls", {
 	capabilities = lsp_capabilities,
 	init_options = {
 		preferences = {
@@ -100,18 +108,36 @@ lspconfig.ts_ls.setup({
 		},
 	},
 })
+vim.lsp.enable("ts_ls")
 
-require("lspconfig").html.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.astro.setup({
+vim.lsp.config("vimls", {
 	capabilities = lsp_capabilities,
 })
+vim.lsp.enable("vimls")
 
-lspconfig.angularls.setup({
+vim.lsp.config("lua_ls", {
 	capabilities = lsp_capabilities,
 })
+vim.lsp.enable("lua_ls")
+
+vim.lsp.config("rust_analyzer", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("rust_analyzer")
+
+vim.lsp.config("gopls", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("gopls")
+
+vim.lsp.config("dcm", {
+	capabilities = lsp_capabilities,
+})
+vim.lsp.enable("dcm")
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -204,7 +230,7 @@ vim.diagnostic.config({
 
 -- Treesitter Plugin Setup
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "html", "css", "lua", "json", "python", "javascript", "typescript", "rust", "toml" },
+	ensure_installed = { "dart", "html", "css", "lua", "json", "python", "javascript", "typescript", "rust", "toml" },
 	auto_install = true,
 	highlight = {
 		enable = true,
