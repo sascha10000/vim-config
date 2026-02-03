@@ -16,8 +16,7 @@ return require("packer").startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
 
-	-- TODO: check github (it is not maintained and there is a replacement.)
-	use("simrat39/rust-tools.nvim")
+	use("mrcjkb/rustaceanvim")
 
 	-- Debugging
 	use("nvim-lua/plenary.nvim")
