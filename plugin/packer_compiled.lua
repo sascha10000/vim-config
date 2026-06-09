@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
-  ["claudecode.nvim"] = {
-    loaded = true,
-    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/claudecode.nvim",
-    url = "https://github.com/coder/claudecode.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -204,6 +199,11 @@ _G.packer_plugins = {
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -228,11 +228,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/rustaceanvim",
     url = "https://github.com/mrcjkb/rustaceanvim"
-  },
-  ["snacks.nvim"] = {
-    loaded = true,
-    path = "/Users/sascha/.local/share/nvim/site/pack/packer/start/snacks.nvim",
-    url = "https://github.com/folke/snacks.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

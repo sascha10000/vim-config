@@ -3,36 +3,40 @@ vim = vim
 vim.g.mapleader = " "
 
 -- deactivate arrow keys
-vim.keymap.set('n', '<Up>', '<Nop>')
-vim.keymap.set('n', '<Down>', '<Nop>')
-vim.keymap.set('n', '<Left>', '<Nop>')
-vim.keymap.set('n', '<Right>', '<Nop>')
+vim.keymap.set("n", "<Up>", "<Nop>")
+vim.keymap.set("n", "<Down>", "<Nop>")
+vim.keymap.set("n", "<Left>", "<Nop>")
+vim.keymap.set("n", "<Right>", "<Nop>")
 
 -- custom
-vim.keymap.set('v', '<leader>y', ':y*<CR>')
+vim.keymap.set("v", "<leader>y", ":y*<CR>")
+
+-- jump to active context
+vim.keymap.set("n", "[c", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true })
 
 -- telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', function()
-    builtin.find_files { path_display = { "truncate" } }
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", function()
+	builtin.find_files({ path_display = { "truncate" } })
 end)
-vim.keymap.set('n', '<C-ff>', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fs', function()
-    builtin.grep_string({ search = vim.fn.input("Grep > "), path_display = { "truncate" } });
+vim.keymap.set("n", "<C-ff>", builtin.git_files, {})
+vim.keymap.set("n", "<leader>fs", function()
+	builtin.grep_string({ search = vim.fn.input("Grep > "), path_display = { "truncate" } })
 end)
-vim.keymap.set('n', '<leader>fd', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', function()
-    builtin.buffers { path_display = { "truncate" } }
+vim.keymap.set("n", "<leader>fd", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>fb", function()
+	builtin.buffers({ path_display = { "truncate" } })
 end)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
-vim.keymap.set('n', '<leader>fc', function()
-    builtin.live_grep { search_dirs = { "%:p" }, path_display = { "shorten" } }
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+vim.keymap.set("n", "<leader>fg", builtin.git_status, {})
+vim.keymap.set("n", "<leader>fc", function()
+	builtin.live_grep({ search_dirs = { "%:p" }, path_display = { "shorten" } })
 end)
 
 -- Space PV back
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 
 -- Vimspector
 --vim.cmd([[
@@ -44,7 +48,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 --nmap <F10> <cmd>call vimspector#StepInto()<cr>")
 --]])
 
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Angular shortcuts
 local opts = { noremap = true, silent = true }
@@ -61,19 +65,25 @@ vim.keymap.set("n", "<leader>xt", ":Telescope diagnostics<cr>", opts)
 vim.keymap.set("n", "<leader>zm", ":ZenMode<cr>", opts)
 
 -- Search highlighting
-require('hlslens').setup()
+require("hlslens").setup()
 
 local kopts = { noremap = true, silent = true }
 
-vim.api.nvim_set_keymap('n', 'n',
-    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    kopts)
-vim.api.nvim_set_keymap('n', 'N',
-    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    kopts)
-vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap(
+	"n",
+	"n",
+	[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	kopts
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"N",
+	[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	kopts
+)
+vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 
-vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)

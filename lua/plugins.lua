@@ -98,4 +98,7 @@ return require("packer").startup(function(use)
 
 	use("github/copilot.vim")
 	use("tidalcycles/vim-tidal")
+
+	-- Extension to show in top row of code which function/class/etc. on eis
+	use("nvim-treesitter/nvim-treesitter-context")
 end)
