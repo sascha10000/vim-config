@@ -3,7 +3,7 @@ require("plugins")
 require("keys")
 require("opts")
 require("dap-config")
-require("claude-code-config")
+-- require("claude-code-config")
 -- require("avante-config")
 
 -- Mason Setup
@@ -133,6 +133,9 @@ vim.lsp.config("dcm", {
 	capabilities = lsp_capabilities,
 })
 vim.lsp.enable("dcm")
+
+-- flutter tools setup
+require("flutter-tools").setup({})
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
